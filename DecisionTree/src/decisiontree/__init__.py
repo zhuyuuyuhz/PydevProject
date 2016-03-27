@@ -7,11 +7,11 @@ from sklearn.externals.six import StringIO
 from sklearn.feature_extraction import DictVectorizer
 import csv
 
-allElecrronicsData = open(r'D:\DataSet\Computer_buyers.csv','rb')
+allElecrronicsData = open('D:\DataSet\Computer_buyers.csv','rb')
 reader = csv.reader(allElecrronicsData)
 headers = reader.next()
 
-print headers
+print "headers:" ,headers
 
 featureList = []
 labelList = []
@@ -22,7 +22,7 @@ for row in reader:
     for i in range(1,len(row) - 1):
         rowDict[headers[i]] = row[i]
     featureList.append(rowDict)
-print(featureList)
+print "featureList:",featureList
 
 vec = DictVectorizer()
 dummyX = vec.fit_transform(featureList).toarray()
@@ -41,7 +41,7 @@ clf = clf.fit(dummyX,dummyY)
 print "clf:" + str(clf)
 
 
-#ͼ��չʾ
+#可视化模型
 with open("allElectronicInformationGain.dot",'w') as f:
     f = tree.export_graphviz(clf, feature_names=vec.get_feature_names(),out_file = f)
     
