@@ -28,7 +28,7 @@ vec = DictVectorizer()
 dummyX = vec.fit_transform(featureList).toarray()
 
 print "dummyX:" + str(dummyX)
-print vec.get_feature_names()
+print "feature_names:",vec.get_feature_names()
 
 print "labellist:" + str(labelList)
 
@@ -48,6 +48,7 @@ with open("allElectronicInformationGain.dot",'w') as f:
 oneRowX = dummyX[0,:]
 print "oneRowX:" + str(oneRowX)
 
+#预测新人newRowX（修改了第一个和第三个属性值）
 newRowX = oneRowX
 newRowX[0] = 1
 newRowX[2] = 0
